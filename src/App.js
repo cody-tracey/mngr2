@@ -20,6 +20,8 @@ function App() {
   const [value2, setValue2] = useState('');
   const [value3, setValue3] = useState('');
 
+
+  //Functions to update my global variables
   const updateUsername = (str) => {
     setUsername(str);
   };
@@ -35,6 +37,7 @@ function App() {
     setValue3(str);
   };
 
+  //Global Variable Object
   const userProfile = {
     username: username,
     setting1: value1,

@@ -5,17 +5,12 @@ const Login = () => {
 
     const myContext = useContext(AppContext);
 
-    const updateGlobal = e => {
-        // console.log(e.target.value);
-        myContext.updateUsername(e.target.value);
-    };
-
     return (
         <div>
             <Form>
                 <Form.Group controlId="formBasicUsername">
                     <Form.Label>username</Form.Label>
-                    <Form.Control type="text" placeholder="Enter username" value={myContext.username} onChange={updateGlobal}/>
+                    <Form.Control type="text" placeholder="Enter username" value={myContext.username} onChange={(e) => myContext.updateUsername(e.target.value)}/>
                 </Form.Group>
             </Form>
         </div>
