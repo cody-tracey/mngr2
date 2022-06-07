@@ -2,11 +2,13 @@
   "name": "mngr2",
   "version": "1.0.0",
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"nodemon server\" \"npm run client\""
+    "dev": "concurrently \"nodemon server\" \"npm run client\"",
+    "start": "node server.js",
+    "server": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -20,10 +22,22 @@
   },
   "homepage": "https://github.com/cody-tracey/mngr2#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
     "concurrently": "^7.2.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "is-empty": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.6",
+    "mysql2": "^2.3.3",
     "nodemon": "^2.0.16",
-    "path": "^0.12.7"
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.0",
+    "path": "^0.12.7",
+    "sequelize": "^6.20.1",
+    "sqlite3": "^5.0.8",
+    "validator": "^13.7.0"
   }
 }
