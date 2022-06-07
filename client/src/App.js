@@ -1,24 +1,69 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+//Pages
+import Home from './Components/Home/home';
+import Login from './Components/Login/login';
+import Landing from './Components/Landing/landing';
+
+//Nav Bar
+import Nav from './Components/nav';
+
+//GLobal Context
+import AppContext from './AppContext';
 
 function App() {
+
+  //Global Variables
+  const [username, setUsername] = useState('');
+  const [value1, setValue1] = useState(false);
+  const [value2, setValue2] = useState('');
+  const [value3, setValue3] = useState('');
+
+
+  //Functions to update my global variables
+  const updateUsername = (str) => {
+    setUsername(str);
+  };
+
+  const updateValue1 = (login) => {
+    login ? setValue1(true) : setValue1(false);
+  };
+
+  const updateValue2 = (str) => {
+    setValue2(str);
+  };
+  const updateValue3 = (str) => {
+    setValue3(str);
+  };
+
+  //Global Variable Object
+  const userProfile = {
+    username: username,
+    setting1: value1,
+    setting2: value2,
+    setting3: value3,
+    updateUsername,
+    updateValue1,
+    updateValue2,
+    updateValue3,
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContext.Provider value={userProfile}>
+      <Router>
+        <Nav/>
+        <Routes>
+          <Route path='/' element={<Landing />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/home' element={<Home />} />
+        </Routes>
+      </Router>
+    </AppContext.Provider>
   );
 }
 
