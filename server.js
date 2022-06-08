@@ -4,33 +4,43 @@ const express = require('express'),
     port = process.env.PORT || 5000,
     cors = require('cors'),
     mongoose = require('mongoose'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    passport = require("passport"),
+    routes = require("./routes");
 
-const APP = express();
+
+const app = express();
 
 //Bodyparser Middleware
-APP.use(
+app.use(
     bodyParser.urlencoded({
         extended: false
     })
 );
 
-APP.use(bodyParser.json);
+app.use(bodyParser.json());
 
 //Good ol Cors
-APP.use(cors());
+app.use(cors());
 
 //DB Config
 const db = require("./config/keys").mongoURI;
 
 //Connect to MongoDB
-
-mongoose    
+mongoose
     .connect(
         db,
-        {useNewUrlParser: true}
+        { useNewUrlParser: true }
     )
     .then(() => console.log("MongoDB successfully connected"))
     .catch(err => console.log(err));
 
-APP.listen(port, () => console.log(`Server running on ${port} => 🌎`));
+// Passport middleware
+app.use(passport.initialize());
+// Passport config
+require("./config/passport")(passport);
+// Routes
+app.use(routes);
+
+app.listen(port, () => console.log(`Server running on ${port} => 🌎`));
+
